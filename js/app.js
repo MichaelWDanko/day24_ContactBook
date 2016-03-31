@@ -119,9 +119,73 @@ window.addEventListener("load", function () {
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
     });
-    
-    var searchBox = document.getElementById('search-box');
+    $('#add-teammate').droppable({
+        drop: function (event, ui) {
+            console.log('Dropped into "Status: Teammate"');
+            var id = parseInt(ui.draggable.attr('id').substr(8));
+            console.log('The ContactID number is: ' + id);
+            var droppedId = document.getElementById(id);
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].id === id) {
+                    console.log('Before: ' + data[i].relation);
+                    data[i].relation = "Teammate";
+                    console.log('After: ' + data[i].relation);
+                    clearContacts();
+                    loadContacts();
+                }
+            }
+        }
+    });
+    $('#add-classmate').droppable({
+        drop: function (event, ui) {
+            console.log('Dropped into "Status: Teammate"');
+            var id = parseInt(ui.draggable.attr('id').substr(8));
+            console.log('The ContactID number is: ' + id);
+            var droppedId = document.getElementById(id);
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].id === id) {
+                    console.log('Before: ' + data[i].relation);
+                    data[i].relation = "Classmate";
+                    console.log('After: ' + data[i].relation);
+                    clearContacts();
+                    loadContacts();
+                }
+            }
+        }
+    });
+
+
+    var searchBox = document.getElementById('search-field');
     searchBox.addEventListener('keyup', function () {
-        console.log('');
+        var searchTerm = searchBox.value;
+        console.log(searchTerm);
+        var testPattern = new RegExp(searchTerm);
+        
+        for (var i = 0; i < data.length; i++) {
+            var el = document.getElementById('contact-' + data[i].id);
+            console.log(el);
+            if (testPattern.test(data[i].name)) {
+                /*True*/
+                el.classList.remove('hidden');
+                console.log("Passed: "+data[i].name);
+            } else {
+                /*False*/
+                el.classList.add('hidden');
+                console.log("Failed: "+data[i].name);
+            }
+        }
+//        for (var i = 0; i < data[i].length; i++) {
+//            var el = document.getElementById('contact-' + data[i].id);
+//            if (data[i].name === searchTerm) {
+//                /*True*/
+//                el.classList.remove('hidden');
+//            } else {
+//                /*False*/
+//                el.classList.add('hidden');
+//            }
+//        }
+        
+        
+        /*Search through my array and match the regular xpression*/
     });
 });
