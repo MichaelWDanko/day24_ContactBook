@@ -5,6 +5,7 @@ $font-color1: white;
 $font-color2: #af4946;
 $font-color3: #692b2a; /*A hover mod*/
 $background: #B0B0B0;
+$font-stack: 'Philosopher', sans-serif;
 
 .hidden {
     display: none;
@@ -29,6 +30,7 @@ body {
         text-decoration: none;    
         }
         li {
+        font-family: $font-stack;
         width: 100px;
         list-style: none;
         display: inline-block;
@@ -46,14 +48,14 @@ body {
 h1 {
     color: $font-color2;
     display: inline-block;
+    font-family: $font-stack;
 }
 #search-field {
     width: 40%;
     font-size: 1em;
 }
-
 #contact-display {
-    border: 1px solid teal;
+    border: 1px solid $font-color2;
     display: flex;
     flex-wrap: wrap;
     width: 80%;
@@ -78,8 +80,6 @@ h1 {
     border-radius: 3px;
    
 
-    
-//    justify-content: space-between;
     background-color: $primary-color;
     h3, p {
         display: inline-block;
@@ -87,9 +87,11 @@ h1 {
         color: $font-color1;
     }
     h2 {
+        font-family: $font-stack;
         color: $font-color2;
     }
     h3 {
+        font-family: $font-stack;
         font-size: 15px;
     }
     
@@ -97,13 +99,14 @@ h1 {
 #trip-fields {
     display: flex;
     justify-content: space-between;
-//    width: 60%;
+    width: 80%;
     text-align: center;
-    margin-top: 2%;
+    margin: 2% 10%;
     
-#invited, #not-invited {
+#invited, #not-invited, #add-teammate, #add-classmate {
+    font-family: $font-stack;
     height: 100px;
-    width: 500px;
+    width: 200px;
     border-radius: 3px;
     color: darkslategrey;
     font-size: 1.3em;
@@ -117,8 +120,12 @@ h1 {
     #not-invited {
         background-color: lightpink;
         border: 2px solid red;
-    }
-    
+    }  
+}
+
+#add-teammate, #add-classmate {
+    border: 1px solid $font-color1;
+        background-color: $font-color2;
 }
 
 
