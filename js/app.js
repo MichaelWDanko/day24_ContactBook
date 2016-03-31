@@ -96,7 +96,6 @@ window.addEventListener("load", function () {
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
     });
-
     $('#not-invited').droppable({
         drop: function (event, ui) {
             //Function to run after being dropped
@@ -117,5 +116,10 @@ window.addEventListener("load", function () {
         /*End of the function being run when dropped.*/
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
+    });
+    
+    var searchBox = document.getElementById('search-box');
+    searchBox.addEventListener('keyup', function () {
+        console.log('');
     });
 });
