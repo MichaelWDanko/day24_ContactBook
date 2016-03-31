@@ -45,7 +45,7 @@ window.addEventListener("load", function () {
 
     function filterContacts(data, relation) {
         for (var i = 0; i < data.length; i++) {
-            if (data[i].classmates === relation) {
+            if (data[i].relation === relation) {
                 var hit = document.getElementById('contact-' + data[i].id);
                 hit.classList.remove('hidden');
             } else {
@@ -58,12 +58,12 @@ window.addEventListener("load", function () {
     // Make radio buttons do something.
     var teammate = document.getElementById('teammate');
     teammate.addEventListener('click', function () {
-        filterContacts(data, "teammate");
+        filterContacts(data, "Teammate");
         /*INSERT A STRING FOR THE FIRST RELATION*/
     });
     var classmate = document.getElementById('classmate');
     classmate.addEventListener('click', function () {
-        filterContacts(data, "classmate");
+        filterContacts(data, "Classmate");
         /*INSERT A STRING FOR THE SECOND RELATION*/
     });
     // Gives the functionality to the All button.
@@ -161,7 +161,7 @@ window.addEventListener("load", function () {
         console.log(searchTerm);
         var testPattern = new RegExp(searchTerm);
         
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < data[i].length; i++) {
             var el = document.getElementById('contact-' + data[i].id);
             console.log(el);
             if (testPattern.test(data[i].name)) {
