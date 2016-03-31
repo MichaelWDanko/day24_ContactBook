@@ -45,7 +45,7 @@ window.addEventListener("load", function () {
 
     function filterContacts(data, relation) {
         for (var i = 0; i < data.length; i++) {
-            if (data[i].relation === relation) {
+            if (data[i].classmates === relation) {
                 var hit = document.getElementById('contact-' + data[i].id);
                 hit.classList.remove('hidden');
             } else {
@@ -56,13 +56,15 @@ window.addEventListener("load", function () {
     } /*End of the filterContacts function*/
 
     // Make radio buttons do something.
-    var family = document.getElementById('family');
-    family.addEventListener('click', function () {
-        filterContacts(data, "family");
+    var teammate = document.getElementById('teammate');
+    teammate.addEventListener('click', function () {
+        filterContacts(data, "teammate");
+        /*INSERT A STRING FOR THE FIRST RELATION*/
     });
-    var friend = document.getElementById('friend');
-    friend.addEventListener('click', function () {
-        filterContacts(data, "friend");
+    var classmate = document.getElementById('classmate');
+    classmate.addEventListener('click', function () {
+        filterContacts(data, "classmate");
+        /*INSERT A STRING FOR THE SECOND RELATION*/
     });
     // Gives the functionality to the All button.
     var all = document.getElementById('all');
@@ -96,7 +98,6 @@ window.addEventListener("load", function () {
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
     });
-
     $('#not-invited').droppable({
         drop: function (event, ui) {
             //Function to run after being dropped
@@ -117,5 +118,10 @@ window.addEventListener("load", function () {
         /*End of the function being run when dropped.*/
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
+    });
+    
+    var searchBox = document.getElementById('search-box');
+    searchBox.addEventListener('keyup', function () {
+        console.log('');
     });
 });
