@@ -161,7 +161,7 @@ window.addEventListener("load", function () {
         console.log(searchTerm);
         var testPattern = new RegExp(searchTerm);
         
-        for (var i = 0; i < data[i].length; i++) {
+        for (var i = 0; i < data.length; i++) {
             var el = document.getElementById('contact-' + data[i].id);
             console.log(el);
             if (testPattern.test(data[i].name)) {
@@ -174,17 +174,6 @@ window.addEventListener("load", function () {
                 console.log("Failed: "+data[i].name);
             }
         }
-//        for (var i = 0; i < data[i].length; i++) {
-//            var el = document.getElementById('contact-' + data[i].id);
-//            if (data[i].name === searchTerm) {
-//                /*True*/
-//                el.classList.remove('hidden');
-//            } else {
-//                /*False*/
-//                el.classList.add('hidden');
-//            }
-//        }
-        
         
         /*Search through my array and match the regular xpression*/
     });
