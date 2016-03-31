@@ -1,7 +1,7 @@
 {
-  "name": "day23_jquery",
+  "name": "day24_contactbook",
   "version": "1.0.0",
-  "description": "An application that incorporates JQuery drag and drop to make add categories",
+  "description": "Developing a multipage site that tracks contacts and adds them to groups.",
   "main": "index.js",
   "dependencies": {
     "bourbon": "^4.2.6",
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MichaelWDanko/day22_InteractiveSearch.git"
+    "url": "git+https://github.com/MichaelWDanko/day24_ContactBook.git"
   },
-  "author": "Michael Danko",
+  "author": "Michael Danko, Clay Griswold",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MichaelWDanko/day22_InteractiveSearch/issues"
+    "url": "https://github.com/MichaelWDanko/day24_ContactBook/issues"
   },
-  "homepage": "https://github.com/MichaelWDanko/day22_InteractiveSearch#readme"
+  "homepage": "https://github.com/MichaelWDanko/day24_ContactBook#readme"
 }
