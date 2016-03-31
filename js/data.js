@@ -60,7 +60,7 @@ module.exports = [{
     phone: '7752180032',
     email: 'stevegoebel@example.com',
     relation: 'friend',
-    invited: 'no',
+    invited: "no"
 },  {
     id: 9,
     name: 'Yogi Berra',
