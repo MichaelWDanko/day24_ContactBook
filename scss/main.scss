@@ -3,6 +3,7 @@
 $primary-color: #1352A2;
 $font-color1: white;
 $font-color2: #af4946;
+$font-color3: #692b2a; /*A hover mod*/
 $background: #B0B0B0;
 
 .hidden {
@@ -16,6 +17,30 @@ body {
 .columns {
     margin-left: 6%;
     margin-right: 6%;
+}
+
+#navbar {
+    display: inline-block;
+    width: 35%;
+    ul {
+        display: flex;
+        justify-content: space-around;
+        a {
+        text-decoration: none;    
+        }
+        li {
+        width: 100px;
+        list-style: none;
+        display: inline-block;
+        border: 1px solid $font-color1;
+        background-color: $font-color2;
+        padding: 1% 6%;
+        color: $font-color1;
+        }
+        li:hover {
+            background-color: $font-color3;
+        }
+    }
 }
 
 h1 {
@@ -41,6 +66,7 @@ h1 {
 #search-bar {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 1%;
 }
 
 
