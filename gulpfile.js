@@ -25,3 +25,9 @@ gulp.task('js', function () {
 //    .pipe(uglify())
     .pipe(gulp.dest('public/js/'));
 });
+
+gulp.task('js', function () {
+    gulp.watch('./*.html', ['html']);
+    gulp.watch('./scss/*.scss', ['css']);
+    gulp.watch('./js/*.js', ['js']);
+});
