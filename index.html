@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interactive Search</title>
+    <link href="./css/main.css" rel="stylesheet" type="text/css">
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+    <!--    <script src="js/contacts.js"></script>-->
+    <script type="text/template" id="template">
+        <h2 class="contact-name"> <%=name%> </h2>
+        <div class="field">
+            <h3>Phone: </h3>
+            <p>
+                <%=phone%>
+            </p>
+        </div>
+        <div class="field">
+            <h3>Email: </h3>
+            <p>
+                <%=email%>
+            </p>
+        </div>
+        <div class="field">
+            <h3>Relation: </h3>
+            <p>
+                <%=relation%>
+            </p>
+        </div>
+        <div class="field">
+            <h3>Invited?: </h3>
+            <p>
+                <%= invited %>
+            </p>
+        </div>
+    </script>
+</head>
+
+<body>
+    <h1 class="columns">Interactive Search</h1>
+    <div id="search-bar" class="columns">
+        <input id="search-box" type="text" placeholder="Search...">
+        <input id="all" type="radio" name="relationship" value="All" checked>
+        <label for="all">All</label>
+        <input id="family" type="radio" name="relationship" value="Family">
+        <label for="family">Family</label>
+        <input id="friend" type="radio" name="relationship" value="Friend">
+        <label for="friend">Friend</label>
+        <button id="search-button"> Search </button>
+    </div>
+    
+    <div id="contact-display">
+        <!--The returned results will appear here.-->
+    </div>
+
+    <div id="trip-fields" class="columns">
+        <div class="dropzones" id="invited">
+            <p>Invited</p>
+        </div>
+        <div class="dropzones" id="not-invited">
+            <p>Not Invited</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
