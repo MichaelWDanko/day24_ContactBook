@@ -1,20 +1,17 @@
 @import "./bourbon/bourbon";
 @import "./neat/neat";
-$primary-color: #1352A2;
-$font-color1: white;
-$font-color2: #af4946;
-$font-color3: #692b2a; /*A hover mod*/
-$background: #B0B0B0;
-$font-stack: 'Philosopher', sans-serif;
+@import "main.scss";
 
 body{
   background-color: $background;
   margin-left: 10%;
   margin-right: 10%;
 }
-h1 {
+#upper{
+  display: inline-flex;
+  width: 100%;
+  h1 {
     color: $font-color2;
-    display: inline-block;
     font-family: $font-stack;
     margin-left: auto;
     margin-right: auto;
@@ -22,25 +19,44 @@ h1 {
     align-content: center;
     font-size: 75px;
     text-align: center;
-
+    @include span-columns(8);
+  }
+  div ul a{
+    width: 100%;
+    font-size: 35px;
+    align-content: center;
+    text-align: center;
+    li{
+      width: 100%;
+    }
+  }
 }
 .searchDiv{
-  border: 1px solid $font-color2;
+  border: 1px solid white;
   display: block;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 1%;
+  background-color: $primary-color;
+  border-radius: 10px;
 
-  p{
+  p, input{
     color: $font-color2;
-    display: block;
     font-family: $font-stack;
     font-size: 30px;
+    display: inline-flex;
+  }
+  input{
+    width: 50%;
+    border-radius: 20px;
+  }
+  p{
+    width: 20%;
   }
 
 
 }
-.button{
+#button2{
   text-decoration: none;
   font-family: $font-stack;
   width: 200px;
@@ -56,7 +72,8 @@ h1 {
   align-content: center;
   text-align: center;
   width: 75%;
+  border-radius: 10px;
 }
-  button:hover{
+  #button2:hover{
     background-color: $font-color3;
   }
