@@ -1,0 +1,56 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+/*A hover mod*/
+body {
+  background-color: #B0B0B0;
+  margin-left: 10%;
+  margin-right: 10%; }
+
+h1 {
+  color: #af4946;
+  display: inline-block;
+  font-family: "Philosopher", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  align-content: center;
+  font-size: 75px;
+  text-align: center; }
+
+.searchDiv {
+  border: 1px solid #af4946;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1%; }
+  .searchDiv p {
+    color: #af4946;
+    display: block;
+    font-family: "Philosopher", sans-serif;
+    font-size: 30px; }
+
+.button {
+  text-decoration: none;
+  font-family: "Philosopher", sans-serif;
+  width: 200px;
+  list-style: none;
+  display: block;
+  font-size: 35px;
+  border: 1px solid white;
+  background-color: #af4946;
+  color: white;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  text-align: center;
+  width: 75%; }
+
+button:hover {
+  background-color: #692b2a; }
+
+/*# sourceMappingURL=createform.css.map */

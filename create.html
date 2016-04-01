@@ -3,26 +3,27 @@
 
 <head>
 <link rel="stylesheet" href="https://necolas.github.io/normalize.css" />
-<link rel="stylesheet" href = "./css/createform.css" type="text/css" />
+<link href = "./css/createform.css" rel="stylesheet" type="text/css">
 <title>Contact Form</title>
 </head>
 
 <body>
+    <h1 class="columns">Add A Contact</h1>
     <form action="none" method = "push">
 
-      <div id = "name">
-        <p>Name</p>
+      <div id = "name" class = "searchDiv">
+        <p>Name: </p>
         <span><input type="text" placeholder="What is your name?" /></span>
         </div>
-      <div id = "phone">
+      <div id = "phone" class = "searchDiv">
+        <p>Phone Number: </p>
         <span><input type = "text" placeholder = "What is your phone number?" /></span>
       </div>
-      <div id = "email">
+      <div id = "email" class = "searchDiv">
+        <p>Email:</p>
         <span><input type = "text" placeholder = "What is your email?" /></span>
       </div>
-        <div id = "submitbutton">
-            <button type ="submit">Submit Contact</button>
-        </div>
+            <button type ="submit" class = "button">Submit Contact</button>
     </form>
 </body>
 
