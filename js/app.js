@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
         fb.once('value', function (hedgehog) {
             var fbContacts = hedgehog.val();
             var fbArray = Object.keys(fbContacts);
-            console.log('fbArray is: ');    
+            console.log('fbArray is: ');
             console.log(fbArray);
             for (var i = 0; i < fbArray.length; i++) {
                 var contactData = template({
@@ -84,94 +84,68 @@ window.addEventListener("load", function () {
     /*This is the beginning of the drop zones JS*/
 
     function fbInviteUpdate(val, ui) {
-
-        var id = parseInt(ui.draggable.attr('id').substr(8));
+        var id = ui.draggable.attr('id').substr(8);
+        console.log('Var ID is: ');
         console.log(id);
-        var fb = new Firebase('https://tiycontactapp.firebaseio.com/contacts/' + id );
+        var fb = new Firebase('https://tiycontactapp.firebaseio.com/contacts/' + id);
         /* Change the null to the object that you want to save */
-        fb.set({
-            name: ui.draggable.attr('name'),
-            phone: ui.draggable.attr('phone'),
-            email: ui.draggable.attr('email'),
-            relation: ui.draggable.attr('relation'),
+        fb.update({
             invited: val,
-           
         }, function () {
             console.log('Object saved!');
         });
+        clearContacts();
+        loadContacts();
     }
-    
-    
+
+
+    function fbRelationUpdate(val, ui) {
+        var id = ui.draggable.attr('id').substr(8);
+        console.log('Var ID is: ');
+        console.log(id);
+        var fb = new Firebase('https://tiycontactapp.firebaseio.com/contacts/' + id);
+        /* Change the null to the object that you want to save */
+        fb.update({
+            relation: val,
+        }, function () {
+            console.log('Object saved!');
+        });
+        clearContacts();
+        loadContacts();
+    }
+
+
     $('#invited').droppable({
         drop: function (event, ui) {
             console.log('Item dropped');
             //Function to run after being dropped
-            var atr = "invited";
             var val = "Yes";
             fbInviteUpdate(val, ui);
         },
         /*End of the function being run when dropped.*/
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
-    });
 
-    //    $('#invited').droppable({
-    //        drop: function (event, ui) {
-    //            //Function to run after being dropped
-    //            console.log('Dropped into Invited!');
-    //            var id = parseInt(ui.draggable.attr('id').substr(8));
-    //            console.log('The ContactId number is: ' + id);
-    //            var droppedId = document.getElementById(id);
-    //            for (var i = 0; i < data.length; i++) {
-    //                if (data[i].id === id) {
-    //                    console.log('Before: ' + data[i].invited);
-    //                    data[i].invited = "yes";
-    //                    console.log('After: ' + data[i].invited);
-    //                    clearContacts();
-    //                    loadContacts();
-    //                }
-    //            }
-    //        },
-    //        /*End of the function being run when dropped.*/
-    //        tolerance: 'pointer',
-    //        hoverclass: "trip-fields-hover",
-    //    });
+    });
     $('#not-invited').droppable({
         drop: function (event, ui) {
             //Function to run after being dropped
             console.log('Dropped into Not Invited!');
-            var id = parseInt(ui.draggable.attr('id').substr(8));
-            console.log('The ContactId number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].invited);
-                    data[i].invited = "no";
-                    console.log('After: ' + data[i].invited);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "No";
+            fbInviteUpdate(val, ui);
         },
         /*End of the function being run when dropped.*/
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
     });
+   
     $('#add-teammate').droppable({
         drop: function (event, ui) {
             console.log('Dropped into "Status: Teammate"');
             var id = parseInt(ui.draggable.attr('id').substr(8));
             console.log('The ContactID number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].relation);
-                    data[i].relation = "Teammate";
-                    console.log('After: ' + data[i].relation);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "Teammate";
+            fbRelationUpdate(val, ui);
         }
     });
     $('#add-classmate').droppable({
@@ -179,16 +153,8 @@ window.addEventListener("load", function () {
             console.log('Dropped into "Status: Teammate"');
             var id = parseInt(ui.draggable.attr('id').substr(8));
             console.log('The ContactID number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].relation);
-                    data[i].relation = "Classmate";
-                    console.log('After: ' + data[i].relation);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "Classmate";
+            fbRelationUpdate(val, ui);           
         }
     });
 
