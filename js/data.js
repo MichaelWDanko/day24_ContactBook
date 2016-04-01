@@ -37,7 +37,7 @@ module.exports = [{
     id: 5,
     name: 'Mark Cuban',
     phone: '7046671896',
-    email: 'jerrydanko@example.com',
+    email: 'markcuban@example.com',
     relation: ' ',
     invited: ' ',
 }, {

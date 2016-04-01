@@ -1,0 +1,62 @@
+@import "./bourbon/bourbon";
+@import "./neat/neat";
+$primary-color: #1352A2;
+$font-color1: white;
+$font-color2: #af4946;
+$font-color3: #692b2a; /*A hover mod*/
+$background: #B0B0B0;
+$font-stack: 'Philosopher', sans-serif;
+
+body{
+  background-color: $background;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+h1 {
+    color: $font-color2;
+    display: inline-block;
+    font-family: $font-stack;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    align-content: center;
+    font-size: 75px;
+    text-align: center;
+
+}
+.searchDiv{
+  border: 1px solid $font-color2;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1%;
+
+  p{
+    color: $font-color2;
+    display: block;
+    font-family: $font-stack;
+    font-size: 30px;
+  }
+
+
+}
+.button{
+  text-decoration: none;
+  font-family: $font-stack;
+  width: 200px;
+  list-style: none;
+  display: block;
+  font-size: 35px;
+  border: 1px solid $font-color1;
+  background-color: $font-color2;
+  color: $font-color1;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  text-align: center;
+  width: 75%;
+}
+  button:hover{
+    background-color: $font-color3;
+  }
