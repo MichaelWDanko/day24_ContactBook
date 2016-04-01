@@ -3,37 +3,46 @@ window.addEventListener("load", function () {
     var _ = require('underscore');
     var data = require('./data');
     var template = _.template(document.getElementById('template').textContent);
+    var Firebase = require('firebase');
 
     function loadContacts() {
-        for (var i = 0; i < data.length; i++) {
-            var contactData = template({
-                id: data[i].id,
-                name: data[i].name,
-                phone: data[i].phone,
-                email: data[i].email,
-                relation: data[i].relation,
-                invited: data[i].invited,
+        /*This is the Firebase request for data*/
+        var fbPull = new Firebase('https://tiycontactapp.firebaseio.com/contacts/');
+        fbPull.once('value', function (hedgehog) {
+            var fbContacts = hedgehog.val();
+            console.log('The return of fbContact is: ');
+            console.log(fbContacts);
+            console.log(fbContacts.length);
+            console.log(fbContacts[0]);
+            console.log(fbContacts[1]);
+            console.log(fbContacts[2]);
+
+
+            for (var i = 1; i < fbContacts.length; i++) {
+                var contactData = template({
+                    id: fbContacts[i].id,
+                    name: fbContacts[i].name,
+                    phone: fbContacts[i].phone,
+                    email: fbContacts[i].email,
+                    relation: fbContacts[i].relation,
+                    invited: fbContacts[i].invited,
+                });
+                var contact = document.createElement('div');
+                contact.classList.add('contacts');
+                //Set the ID for this element.
+                contact.setAttribute('id', 'contact-' + fbContacts[i].id);
+                contact.innerHTML = contactData;
+                var parent = document.getElementById('contact-display');
+                parent.appendChild(contact);
+            } /*End of for loop. Include this when commenting out the for Loop*/
+            $('.contacts').draggable({
+                helper: 'clone',
+                opacity: 0.50,
+                scroll: false,
+                revert: true,
             });
-            var contact = document.createElement('div');
-            contact.classList.add('contacts');
-            //Set the ID for this element.
-            contact.setAttribute('id', 'contact-' + data[i].id);
-            contact.innerHTML = contactData;
-            var parent = document.getElementById('contact-display');
-            parent.appendChild(contact);
-        } /*End of the for-loop*/
-
-        // Makes each contact draggable.
-        // It's nested in the loadContacts function
-        // to reapply the dragability to the contacts every time 
-        // they're recreated.
-
-        $('.contacts').draggable({
-            helper: 'clone',
-            opacity: 0.50,
-            scroll: false,
-            revert: true,
         });
+
     } /*End of the loadContacts function*/
 
     function clearContacts() {
@@ -160,21 +169,21 @@ window.addEventListener("load", function () {
         var searchTerm = searchBox.value;
         console.log(searchTerm);
         var testPattern = new RegExp(searchTerm);
-        
+
         for (var i = 0; i < data.length; i++) {
             var el = document.getElementById('contact-' + data[i].id);
             console.log(el);
             if (testPattern.test(data[i].name)) {
                 /*True*/
                 el.classList.remove('hidden');
-                console.log("Passed: "+data[i].name);
+                console.log("Passed: " + data[i].name);
             } else {
                 /*False*/
                 el.classList.add('hidden');
-                console.log("Failed: "+data[i].name);
+                console.log("Failed: " + data[i].name);
             }
         }
-        
+
         /*Search through my array and match the regular xpression*/
     });
 });
