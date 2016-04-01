@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bourbon": "^4.2.6",
+    "firebase": "^2.4.2",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
     "gulp-html": "^0.4.4",
