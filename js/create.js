@@ -34,4 +34,35 @@ window.addEventListener('load', function() {
   pull.once('value', function(countIt) {
     console.log(countIt.val());
   });
+
+var nameSearchBox = document.getElementById('name');
+var phoneSearchBox = document.getElementById('phone');
+  nameSearchBox.addEventListener('keyup', function(){
+    var searchTerm = nameSearchBox.value;
+    console.log(nameSearchBox);
+    var TestPattern = new RegExp(searchTerm);
+
+    for(var i = 0; i < searchTerm.length; i++){
+      var search = new RegExp('[A-Za-z{2,}]+');
+      if(TestPattern.test(data[i]) === search){
+        return true;
+      }else{
+        return false;
+      }
+
+      var searchPhone = new RegExp('[0-9{7,10}]');
+          if(TestPattern.test(data[i]) === search){
+            return true;
+          }else{
+            return false;
+          }
+
+      var searchEmail = new RegExp('[A-Za-z0-9\-\.\_]+\@[A-Za-z0-9]+\.[A-Za-z0-9]');
+          if(TestPattern.test(data[i]) === search){
+            return true;
+          }else{
+            return false;
+          }
+}
+});
 });

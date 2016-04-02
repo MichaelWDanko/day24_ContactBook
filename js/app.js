@@ -184,6 +184,6 @@ window.addEventListener("load", function () {
             }
         }
 
-        /*Search through my array and match the regular xpression*/
+        /*Search through my array and match the regular expression*/
     });
 });
