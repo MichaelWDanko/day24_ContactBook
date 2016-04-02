@@ -7,30 +7,25 @@ window.addEventListener("load", function () {
 
     function loadContacts() {
         /*This is the Firebase request for data*/
-        var fbPull = new Firebase('https://tiycontactapp.firebaseio.com/contacts/');
-        fbPull.once('value', function (hedgehog) {
+        var fb = new Firebase('https://tiycontactapp.firebaseio.com/contacts/');
+        fb.once('value', function (hedgehog) {
             var fbContacts = hedgehog.val();
-            console.log('The return of fbContact is: ');
-            console.log(fbContacts);
-            console.log(fbContacts.length);
-            console.log(fbContacts[0]);
-            console.log(fbContacts[1]);
-            console.log(fbContacts[2]);
-
-
-            for (var i = 1; i < fbContacts.length; i++) {
+            var fbArray = Object.keys(fbContacts);
+            console.log('fbArray is: ');
+            console.log(fbArray);
+            for (var i = 0; i < fbArray.length; i++) {
                 var contactData = template({
-                    id: fbContacts[i].id,
-                    name: fbContacts[i].name,
-                    phone: fbContacts[i].phone,
-                    email: fbContacts[i].email,
-                    relation: fbContacts[i].relation,
-                    invited: fbContacts[i].invited,
+                    id: fbContacts[fbArray[i]].id,
+                    name: fbContacts[fbArray[i]].name,
+                    phone: fbContacts[fbArray[i]].phone,
+                    email: fbContacts[fbArray[i]].email,
+                    relation: fbContacts[fbArray[i]].relation,
+                    invited: fbContacts[fbArray[i]].invited,
                 });
                 var contact = document.createElement('div');
                 contact.classList.add('contacts');
                 //Set the ID for this element.
-                contact.setAttribute('id', 'contact-' + fbContacts[i].id);
+                contact.setAttribute('id', 'contact-' + fbContacts[fbArray[i]].id);
                 contact.innerHTML = contactData;
                 var parent = document.getElementById('contact-display');
                 parent.appendChild(contact);
@@ -42,7 +37,6 @@ window.addEventListener("load", function () {
                 revert: true,
             });
         });
-
     } /*End of the loadContacts function*/
 
     function clearContacts() {
@@ -86,63 +80,72 @@ window.addEventListener("load", function () {
     /*Anything above this is to establish functions.*/
 
     loadContacts(); /*Initial load of each contact*/
+
+    /*This is the beginning of the drop zones JS*/
+
+    function fbInviteUpdate(val, ui) {
+        var id = ui.draggable.attr('id').substr(8);
+        console.log('Var ID is: ');
+        console.log(id);
+        var fb = new Firebase('https://tiycontactapp.firebaseio.com/contacts/' + id);
+        /* Change the null to the object that you want to save */
+        fb.update({
+            invited: val,
+        }, function () {
+            console.log('Object saved!');
+        });
+        clearContacts();
+        loadContacts();
+    }
+
+
+    function fbRelationUpdate(val, ui) {
+        var id = ui.draggable.attr('id').substr(8);
+        console.log('Var ID is: ');
+        console.log(id);
+        var fb = new Firebase('https://tiycontactapp.firebaseio.com/contacts/' + id);
+        /* Change the null to the object that you want to save */
+        fb.update({
+            relation: val,
+        }, function () {
+            console.log('Object saved!');
+        });
+        clearContacts();
+        loadContacts();
+    }
+
+
     $('#invited').droppable({
         drop: function (event, ui) {
+            console.log('Item dropped');
             //Function to run after being dropped
-            console.log('Dropped into Invited!');
-            var id = parseInt(ui.draggable.attr('id').substr(8));
-            console.log('The ContactId number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].invited);
-                    data[i].invited = "yes";
-                    console.log('After: ' + data[i].invited);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "Yes";
+            fbInviteUpdate(val, ui);
         },
         /*End of the function being run when dropped.*/
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
+
     });
     $('#not-invited').droppable({
         drop: function (event, ui) {
             //Function to run after being dropped
             console.log('Dropped into Not Invited!');
-            var id = parseInt(ui.draggable.attr('id').substr(8));
-            console.log('The ContactId number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].invited);
-                    data[i].invited = "no";
-                    console.log('After: ' + data[i].invited);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "No";
+            fbInviteUpdate(val, ui);
         },
         /*End of the function being run when dropped.*/
         tolerance: 'pointer',
         hoverclass: "trip-fields-hover",
     });
+
     $('#add-teammate').droppable({
         drop: function (event, ui) {
             console.log('Dropped into "Status: Teammate"');
             var id = parseInt(ui.draggable.attr('id').substr(8));
             console.log('The ContactID number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].relation);
-                    data[i].relation = "Teammate";
-                    console.log('After: ' + data[i].relation);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "Teammate";
+            fbRelationUpdate(val, ui);
         }
     });
     $('#add-classmate').droppable({
@@ -150,19 +153,10 @@ window.addEventListener("load", function () {
             console.log('Dropped into "Status: Teammate"');
             var id = parseInt(ui.draggable.attr('id').substr(8));
             console.log('The ContactID number is: ' + id);
-            var droppedId = document.getElementById(id);
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].id === id) {
-                    console.log('Before: ' + data[i].relation);
-                    data[i].relation = "Classmate";
-                    console.log('After: ' + data[i].relation);
-                    clearContacts();
-                    loadContacts();
-                }
-            }
+            var val = "Classmate";
+            fbRelationUpdate(val, ui);
         }
     });
-
 
     var searchBox = document.getElementById('search-field');
     searchBox.addEventListener('keyup', function () {
@@ -183,7 +177,6 @@ window.addEventListener("load", function () {
                 console.log("Failed: " + data[i].name);
             }
         }
-
-        /*Search through my array and match the regular expression*/
+        /*Search through my array and match the regular xpression*/
     });
 });
