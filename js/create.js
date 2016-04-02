@@ -40,17 +40,17 @@ window.addEventListener('load', function() {
     var phoneSearchBox = document.getElementById('phone');
     var emailSearchBox = document.getElementById('email');
 
-    var searchTerm = nameSearchBox.value;
-    var searchTerm2 = phoneSearchBox.value;
-    var searchTerm3 = emailSearchBox.value;
+    var searchIt = nameSearchBox.value;
+    var searchIt2 = phoneSearchBox.value;
+    var searchIt3 = emailSearchBox.value;
 
-    var TestPattern = new RegExp(searchTerm);
-    var TestPattern2 = new RegExp(searchTerm2);
-    var TestPattern3 = new RegExp(searchTerm3);
+    var TestPatternName = new RegExp(searchIt);
+    var TestPatternPhone = new RegExp(searchIt2);
+    var TestPatternEmail = new RegExp(searchIt3);
 
     for(var i = 0; i < searchTerm.length; i++){
-      var search = new RegExp('[A-Za-z{2,}]+');
-      if(TestPattern.test(data[i]) === search){
+      var searchName = new RegExp('[A-Za-z{2,}]+');
+      if(TestPatternName.test(data[i]) === searchName){
         return true;
       }else{
         return false;
@@ -59,7 +59,7 @@ window.addEventListener('load', function() {
 
     for(var j = 0; j < searchTerm2.length; j++){
       var searchPhone = new RegExp('[0-9{7,10}]');
-          if(TestPattern2.test(data[j]) === searchPhone){
+          if(TestPatternPhone.test(data[j]) === searchPhone){
             return true;
           }else{
             return false;
@@ -68,7 +68,7 @@ window.addEventListener('load', function() {
 
     for(var k = 0; k < searchTerm3.length; k++){
       var searchEmail = new RegExp('[A-Za-z0-9\-\.\_]+\@[A-Za-z0-9]+\.[A-Za-z0-9]');
-          if(TestPattern3.test(data[i]) === searchEmail){
+          if(TestPatternEmail.test(data[i]) === searchEmail){
             return true;
           }else{
             return false;
