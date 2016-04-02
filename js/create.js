@@ -34,4 +34,45 @@ window.addEventListener('load', function() {
   pull.once('value', function(countIt) {
     console.log(countIt.val());
   });
+
+  nameSearchBox.addEventListener('keyup', function(){
+    var nameSearchBox = document.getElementById('name');
+    var phoneSearchBox = document.getElementById('phone');
+    var emailSearchBox = document.getElementById('email');
+
+    var searchIt = nameSearchBox.value;
+    var searchIt2 = phoneSearchBox.value;
+    var searchIt3 = emailSearchBox.value;
+
+    var TestPatternName = new RegExp(searchIt);
+    var TestPatternPhone = new RegExp(searchIt2);
+    var TestPatternEmail = new RegExp(searchIt3);
+
+    for(var i = 0; i < searchTerm.length; i++){
+      var searchName = new RegExp('[A-Za-z{2,}]+');
+      if(TestPatternName.test(data[i]) === searchName){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    for(var j = 0; j < searchTerm2.length; j++){
+      var searchPhone = new RegExp('[0-9{7,10}]');
+          if(TestPatternPhone.test(data[j]) === searchPhone){
+            return true;
+          }else{
+            return false;
+          }
+        }
+
+    for(var k = 0; k < searchTerm3.length; k++){
+      var searchEmail = new RegExp('[A-Za-z0-9\-\.\_]+\@[A-Za-z0-9]+\.[A-Za-z0-9]');
+          if(TestPatternEmail.test(data[i]) === searchEmail){
+            return true;
+          }else{
+            return false;
+          }
+        }
+});
 });
