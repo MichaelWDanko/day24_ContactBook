@@ -34,7 +34,6 @@ window.addEventListener('load', function() {
   pull.once('value', function(countIt) {
     console.log(countIt.val());
   });
-<<<<<<< HEAD
 
 var nameSearchBox = document.getElementById('name');
 var phoneSearchBox = document.getElementById('phone');
@@ -66,6 +65,4 @@ var phoneSearchBox = document.getElementById('phone');
           }
 }
 });
-=======
->>>>>>> 23c6651e73f17380d48fbf84fd868002e5fab3ba
 });
