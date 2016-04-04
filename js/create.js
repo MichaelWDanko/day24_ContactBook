@@ -12,6 +12,7 @@ function contactCreated(invited, name, phone, email, relation) {
 }
 
 window.addEventListener('load', function() {
+
   var submitButton = document.getElementById('button2');
   button2.addEventListener('click', function() {
     console.log('clicked');
@@ -34,48 +35,39 @@ window.addEventListener('load', function() {
   pull.once('value', function(countIt) {
     console.log(countIt.val());
   });
-var nameSearchBox = document.getElementById('name');
+
+// Form Validation
+
+  var nameSearchBox = document.getElementById('name');
   nameSearchBox.addEventListener('keyup', function(){
     var searchIt = nameSearchBox.value;
-    var TestPatternName = new RegExp(searchIt);
+    var searchName = new RegExp('^([a-zA-Z]{2,})+[-]?[a-zA-Z]*[ ]*[a-zA-Z]*$');
+      if(searchName.test(nameSearchBox.value)){
+        console.log(searchName.test(searchIt));
+        return true;
+      }
+  });
 
-    for(var i = 0; i < searchTerm.length; i++){
-      var searchName = new RegExp('[A-Za-z{2,}]+');
-      if(TestPatternName.test(data[i]) === searchName){
+  var phoneSearchBox = document.getElementById('phone');
+    phoneSearchBox.addEventListener('keyup', function(){
+      var searchNum = phoneSearchBox.value;
+      var phoneSearch = new RegExp('^([0-9]{10})+$');
+      if (phoneSearch.test(phoneSearchBox)){
+        console.log(searchNum.test(searchNum.value));
+        return true;
+      }else {
+        return false;
+      }
+  });
+
+  var emailSearchBox = document.getElementById('email');
+    emailSearchBox.addEventListener('keyup', function(){
+      var searchEmail = emailSearchBox.value;
+      var re = '^([0-9a-zA-Z]([\-\_\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([\-\_\.]*[A-Za-z0-9]+)*)\.([a-zA-Z]{2,9})$';
+      if (re.test(searchEmail)){
         return true;
       }else{
         return false;
       }
-    }
-  });
-
-var phoneSearchBox = document.getElementById('phone');
-  phoneSearchBox.addEventListener('keyup', function(){
-    var searchIt2 = phoneSearchBox.value;
-    var TestPatternPhone = new RegExp(searchIt2);
-
-    for(var j = 0; j < searchTerm2.length; j++){
-      var searchPhone = new RegExp('[0-9{7,10}]');
-          if(TestPatternPhone.test(data[j]) === searchPhone){
-            return true;
-          }else{
-            return false;
-          }
-        }
-      });
-
-  var emailSearchBox = document.getElementById('email');
-    emailSearchBox.addEventListener('keyup', function(){
-      var searchIt3 = emailSearchBox.value;
-      var TestPatternEmail = new RegExp(searchIt3);
-
-      for(var k = 0; k < searchTerm3.length; k++){
-        var searchEmail = new RegExp('[A-Za-z0-9\-\.\_]+\@[A-Za-z0-9]+\.[A-Za-z0-9]');
-            if(TestPatternEmail.test(data[i]) === searchEmail){
-              return true;
-            }else{
-              return false;
-            }
-          }
-    });
+});
 });
