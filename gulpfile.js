@@ -4,7 +4,7 @@ var sass = require('gulp-sass');
 var browserify = require('gulp-browserify');
 var uglify = require('gulp-uglify');
 
-gulp.task('default', ['html', 'css', 'js']);
+gulp.task('default', ['html', 'css', 'js', 'cname']);
 
 gulp.task('html', function () {
     return gulp.src('./*.html')
@@ -25,6 +25,12 @@ gulp.task('js', function () {
 //    .pipe(uglify())
     .pipe(gulp.dest('public/js/'));
 });
+
+gulp.task('cname', function () {
+   return gulp.src('./CNAME')
+        .pipe(gulp.dest('./public/'));
+});
+
 
 gulp.task('watch', function () {
     gulp.watch('./*.html', ['html']);
